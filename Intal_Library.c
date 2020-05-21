@@ -107,8 +107,6 @@ char* intal_diff(const char* intal1, const char* intal2)
 {
     int n1=strlen(intal1);
     int n2=strlen(intal2);
-    //char* rn1=strrev(intal1);
-    //char* rn2=strrev(intal2);
     int p=n1>n2?n1:n2;
     char* temp=(char *)malloc((p+2)*sizeof(char));
     int i=n1-1;
@@ -199,55 +197,6 @@ char* intal_diff(const char* intal1, const char* intal2)
     }
 }
 
-/*char* intal_multiply(const char* intal1, const char* intal2)
-{
-    int l1=strlen(intal1);
-    int l2=strlen(intal2);
-    char* result=(char *)malloc((l1*l2+1)*sizeof(char));
-    int* temp=(int *)malloc((l1*l2+1)*sizeof(int));
-    if(l1==0 || l2==0)
-    {
-        strcpy(result,"0");
-        return result;
-    }
-    int p1=0;
-    int p2=0;
-    for(int i=l1-1;i>=0;i--)
-    {
-        int c=0;
-        int n1=intal1[i]-'0';
-        p2=0;
-        for(int j=l2-1;j>=0;j--)
-        {
-            int n2=intal2[j]-'0';
-            int sum=n1*n2+temp[p1+p2]+c;
-            c=sum/10;
-            temp[p1+p2]=sum%10;
-            p2++;
-        }
-        if(c>0)
-            temp[p1+p2] +=c;
-        p1++;
-    }
-    for(int i=0;i<(l1+l2+2);i++)
-        result[i]=temp[i]+'0';
-    free(temp);
-    int i=strlen(result)-1;
-    while(i>=0 && result[i]=='0')
-    {
-        if(result[i]=='0')
-        {
-            result[i]='\0';
-            i--;
-        }
-        else
-            break;
-    }
-    if(i==-1)
-        strcpy(result,"0");
-    return revstring(result);
-}*/
-
 char* intal_multiply(const char* intal1, const char* intal2)
 {
     if(strcmp(intal1,"0")==0 || strcmp(intal2,"0")==0)
@@ -316,9 +265,6 @@ char* intal_pow(const char* intal1, unsigned int n)
 
 char* intal_mod(const char* intal1, const char* intal2)
 {
-    //int n1=strlen(intal1);
-    //int n2=strlen(intal2);
-    //int a=n1>n2?n1:n2;
     int i=strlen(intal1)-1;
     int p,q;
     char* pow;
@@ -350,7 +296,6 @@ char* intal_mod(const char* intal1, const char* intal2)
 char* intal_gcd(const char* intal1, const char* intal2)
 {
     char* p;
-   // const char* q;
     int x=intal_compare(intal1,"0");
     int y=intal_compare(intal2,"0");
     int n2=strlen(intal2);
@@ -366,12 +311,7 @@ char* intal_gcd(const char* intal1, const char* intal2)
         return b;
     else
     {
-        //printf("%s   %s\n",intal1,intal2);
         p=intal_mod(intal2,intal1);
-       // printf("%s\n",p);
-        //q=intal1;
-        //intal1=p;
-        //free(q);
         return intal_gcd(p,intal1);
     }
     free(ans);
@@ -485,7 +425,6 @@ int intal_binsearch(char **arr, int n, const char* key)
 
 static void merge(char** arr, int l, int m, int r)
 {
-    //printf("HI3\n");
     int n1=m-l+1;
     int n2=r-m;
     char** templ=(char **)malloc((m-l)*sizeof(char*));
@@ -528,7 +467,6 @@ free(tempr);
 
 static void mergesort(char** arr,int l, int r)
 {
-    //printf("HI2\n");
     if(l<r)
     {
         int m=l+(r-l)/2;
@@ -540,16 +478,11 @@ static void mergesort(char** arr,int l, int r)
 
 void intal_sort(char **arr, int n)
 {
-   // printf("HI1\n");
     mergesort(arr,0,n-1);
 }
 
-
-
-
 char* coin_row_problem(char **arr, int n)
 {
-    //printf("1\n");
     char* prev;
     char* cur="0";
     char* next;
@@ -564,7 +497,6 @@ char* coin_row_problem(char **arr, int n)
     cur=arr[0];
     for(int i=2;i<=n;i++)
     {
-        //printf("2\n");
         sum=intal_add(prev,arr[i-1]);
         c=intal_compare(sum,cur);
         if(c==1)
